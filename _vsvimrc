@@ -1,0 +1,90 @@
+set smartcase
+set ignorecase
+set gdefault
+set incsearch
+"set showmatch
+set hlsearch
+
+let mapleader=" "
+
+noremap <ESC><ESC> :noh<cr>
+vnoremap <ESC><ESC> <ESC>
+
+vnoremap / /\v
+nnoremap / /\v
+
+vnoremap j gj
+nnoremap j gj
+
+vnoremap k gk
+nnoremap k gk
+
+vnoremap H b
+nnoremap H b
+
+vnoremap L w
+nnoremap L w
+
+vnoremap q ``zz
+nnoremap q ``zz
+
+vnoremap u uzz
+nnoremap u uzz
+
+noremap Y y$
+noremap p pA
+
+map N Nzz
+map n nzz
+
+
+" yank word under cursor
+noremap <leader>y yiw
+vnoremap <leader>y y
+
+" replace word under cursor with yanked word
+noremap <leader>p ciw<C-r>0
+vnoremap <leader>p c<c-r>0
+
+
+" reload config file
+:nnoremap <leader>R :source C:\Users\thomas.galdi.wsil\_vsvimrc
+
+" find and replace all occurances in file of word under cursor
+:nnoremap <leader>s :%s/\<<C-r><C-w>\>/
+
+" find/highlight all occurances of word under cursor and replace just word under cursor
+" remains at current location and allows browsing of occurances
+:nnoremap <leader>r :s/\<<C-r><C-w>\>/
+
+" replace characters that are visually selected
+:vnoremap <leader>k "hy:%s/<C-r>h/
+
+" does not work when copying characters and white space?
+" :vnoremap <leader>l "hy:%s/\<<C-r>h\>/
+
+" find/highlight all occurances of word under cursor but remain at location
+:nnoremap * :let @/="\\<<c-r><c-w>\\>"<CR>:set hls<CR>
+
+" change within boundary under cursor
+:nnoremap <leader>t vy:execute "normal! ci<c-r><c-w> "<CR>i
+
+" insert a spaces inside boundary before and after data it contains
+:nnoremap <leader>T vy:execute "normal! di<c-r><c-w> " <CR>i <ESC>p i <ESC>
+
+" CTRL-V Paste
+"map <C-V>		"+gP
+"imap <C-V>		<Esc>"+gpa
+"cmap <C-V>		<C-R>+
+
+" Use CTRL-Q to do what CTRL-V does in vim ( block selection )
+"noremap <C-Q>		<C-V>
+
+"function! FindAndReplace()
+"    call inputsave()
+"    let find = input('Find Query:')
+"    call inputrestore()
+"    let replace = input('Replace Query:')
+"    call inputrestore()
+"    execute '%s/'.find/'.replace.'/gc'
+"endfunction
